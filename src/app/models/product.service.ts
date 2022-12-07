@@ -3,18 +3,17 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "./product.model";
 
+const API_BASE_URL = 'localhost:8080';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiServerUrl = 'localhost:8080';
-
   constructor(private http: HttpClient) {}
 
-  public getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/item/all');
+  public getProducts(): Observable<Array <Product>> {
+    return this.http.get<Product[]>(`${API_BASE_URL}/item/all`);
   }
 
   public addProduct(product: Product): Observable<Product> {
