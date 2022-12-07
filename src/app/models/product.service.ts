@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   public getProducts(): Observable<Array <Product>> {
-    return this.http.get<Product[]>(`${API_BASE_URL}/item/all`);
+    return this.http.get<Product[]>(`http://localhost:8080/item/all`);
   }
 
   public addProduct(product: Product): Observable<Product> {
