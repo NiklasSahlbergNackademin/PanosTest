@@ -1,0 +1,38 @@
+<mat-card class="max-w-7xl mx-auto bg-blue-100">
+  <div class="container mx-auto px-4 bg-blue-200 ">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-2xl font-bold text-gray-900">Receipt</h1>
+      <div class="my-4 bg-blue-100 rounded-xl p-2">
+        <p class="text-gray-700 font-bold mb-2">Purchased From</p>
+        <p class="text-gray-600">Sko Butiken</p>
+        <p class="text-gray-600">1700 Solnavägen</p>
+        <p class="text-gray-600">Stockholm, Solna 12345</p>
+      </div>
+      <div class="my-4 bg-blue-100 rounded-xl p-2">
+        <p class="text-gray-700 font-bold mb-2">Purchased By</p>
+        <p class="text-gray-600">John Doe</p>
+
+        <p class="text-gray-600">123 Grönavägen</p>
+        <p class="text-gray-600">Stockholm, Östermalm 12572</p>
+        <p class="text-gray-600">john.doe@example.com</p>
+      </div>
+      </div>
+
+      <table class="w-full text-left table-collapse my-2">
+        <thead>
+        <tr>
+          <th class="text-xs font-semibold w-96 m-2 text-gray-700 p-2 rounded-xl bg-blue-100">Product</th>
+          <th class="w-1"> </th>
+          <th class="text-xs font-semibold w-96 m-2 text-gray-700 p-2 rounded-xl bg-blue-100">Total</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="cart.items.length">
+        <tr *ngFor="let item of cart.items">
+          <td class="text-sm py-2 px-4 text-gray-700 border-r-2">{{item.name}}</td>
+          <td class="text-sm px-2 text-gray-700 border-r-2"> </td>
+          <td class="text-sm py-2 px-4 text-gray-700">{{item.price}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+</mat-card>

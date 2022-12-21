@@ -1,4 +1,4 @@
-<mat-card class="max-w-7xl mx-auto bg-blue-100 " *ngIf="cart.items.length">
+<mat-card class="max-w-7xl mx-auto bg-blue-200" *ngIf="cart.items.length">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full rounded-xl bg-blue-100">
       <ng-container matColumnDef="product">
         <th mat-header-cell *matHeaderCellDef>Product</th>
@@ -70,9 +70,9 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
 </mat-card>
-<mat-card *ngIf="!cart.items.length" class="max-w-7xl pt-2 pl-2 mx-auto" >
-    <p>
+<mat-card *ngIf="!cart.items.length" class="max-w-7xl pt-2 pl-2 mx-auto bg-blue-200" style="background-color: rgb(191 219 254);" >
+    <span>
       Your cart is empty
-      <button mat-raised-button routerLink="/home"> Start Shopping!</button>
-    </p>
+      <button class="float-right mr-2 -mt-1 mb-1" mat-raised-button routerLink="/home"> Start Shopping!</button>
+    </span>
 </mat-card>

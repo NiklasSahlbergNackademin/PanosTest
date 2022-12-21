@@ -24,7 +24,7 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
 import { CartComponent } from './pages/cart/cart.component';
 import {CartService} from "./services/cart.service";
-import { ReceiptComponent } from './components/receipt/receipt.component';
+import { ReceiptComponent } from './components/header/receipt/receipt.component';
 
 @NgModule({
   declarations: [
