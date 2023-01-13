@@ -26,6 +26,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import {CartService} from "./services/cart.service";
 import { ReceiptComponent } from './components/header/receipt/receipt.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     ProductBoxComponent,
     CartComponent,
     ReceiptComponent,
-    AdminComponent
+    AdminComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

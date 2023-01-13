@@ -1,10 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CartService} from "../../services/cart.service";
-import {Product} from "../../models/product.model";
-import {ProductService} from "../../models/product.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CartService } from "../../services/cart.service";
+import { Product } from "../../models/product.model";
+import { ProductService } from "../../models/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import { Subscription } from 'rxjs';
+
 const ROWS_HEIGHT: {[id:number]: number} = { 1: 400, 3: 335, 4: 350};
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
