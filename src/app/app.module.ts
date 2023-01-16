@@ -26,6 +26,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import {CartService} from "./services/cart.service";
 import { ReceiptComponent } from './components/header/receipt/receipt.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,9 @@ import { AdminComponent } from './pages/admin/admin.component';
     MatBadgeModule,
     MatSnackBarModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [CartService],
   bootstrap: [AppComponent]
