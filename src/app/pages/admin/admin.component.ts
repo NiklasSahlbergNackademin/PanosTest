@@ -15,21 +15,21 @@ export class AdminComponent implements OnInit{
   price: number | undefined;
   category: string | undefined;
   description: string | undefined;
-  imageUrl: string | undefined;
+  image: string | undefined;
 
   constructor(private http: HttpClient) {}
 
   onSubmit() {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post('http://localhost:8080/item/add',
-      { name: this.name, price: this.price,category: this.category, description: this.description, imageUrl: this.imageUrl }, { headers,observe: 'response'}).subscribe(
+      { name: this.name, price: this.price,category: this.category, description: this.description, image: this.image }, { headers,observe: 'response'}).subscribe(
       res => {
         console.log(res);
         this.name = '';
         this.price = 0;
         this.category = '';
         this.description = '';
-        this.imageUrl = '';
+        this.image = '';
         if (res.status) {
           console.log("Successfully Created");
         }
