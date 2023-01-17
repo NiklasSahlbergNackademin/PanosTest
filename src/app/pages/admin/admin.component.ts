@@ -7,23 +7,24 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent{
+export class AdminComponent {
   products: Array<Product> | undefined;
 
-
+  id: number | undefined;
   name: string | undefined;
   price: number | undefined;
   category: string | undefined;
   description: string | undefined;
   image: string | undefined;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   onSubmit() {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post('http://localhost:8080/item/add',
-      { name: this.name, price: this.price,category: this.category, description: this.description, image: this.image },
-      { headers,observe: 'response'}).subscribe(
+      {name: this.name, price: this.price, category: this.category, description: this.description, image: this.image},
+      {headers, observe: 'response'}).subscribe(
       res => {
         console.log(res);
         this.name = '';
@@ -31,13 +32,36 @@ export class AdminComponent{
         this.category = '';
         this.description = '';
         this.image = '';
-        if (res.status) {console.log("Successfully Created")}
+        if (res.status) {
+          console.log("Successfully Created")
+        }
       },
-        err => {
-        if (err.status === 404) {console.log("Not Found");}
-        else if (err.status === 400) {console.log("Bad Request");}
+      err => {
+        if (err.status === 404) {
+          console.log("Not Found");
+        } else if (err.status === 400) {
+          console.log("Bad Request");
+        }
       });
   }
 
+  onDelete() {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.delete(`http://localhost:8080/item/delete/${this.id}`, {headers, observe: 'response'}).subscribe(
+      res => {
+        if (res.status === 204) {
+          console.log("Successfully Deleted");
+        }
+      },
+      err => {
+        if (err.status === 404) {
+          console.log("Not Found");
+        } else if (err.status === 400) {
+          console.log("Bad Request");
+        }
+      }
+    );
 
+
+  }
 }
