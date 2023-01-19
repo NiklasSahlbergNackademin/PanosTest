@@ -1,14 +1,17 @@
-import {Component} from '@angular/core';
-import {Product} from "../../models/product.model";
+import {Component, OnInit} from '@angular/core';
+import { ProductService } from "../../models/product.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Product} from "../../models/product.model";
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
-  products: Array<Product> | undefined;
+export class AdminComponent implements OnInit {
+  products: Product[] = [];
 
   id: number | undefined;
   name: string | undefined;
@@ -17,7 +20,7 @@ export class AdminComponent {
   description: string | undefined;
   image: string | undefined;
 
-  constructor(private http: HttpClient) {
+  constructor(private _snackBar: MatSnackBar,private http: HttpClient, private productService: ProductService) {
   }
 
   onSubmit() {
@@ -33,7 +36,8 @@ export class AdminComponent {
         this.description = '';
         this.image = '';
         if (res.status) {
-          console.log("Successfully Created")
+          console.log("Successfully Created");
+          this._snackBar.open('1 item added to list', 'Ok' , { duration: 3000 });
         }
       },
       err => {
@@ -49,8 +53,9 @@ export class AdminComponent {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.delete(`http://localhost:8080/item/delete/${this.id}`, {headers, observe: 'response'}).subscribe(
       res => {
-        if (res.status === 204) {
+        if (res.status === 200) {
           console.log("Successfully Deleted");
+          this._snackBar.open('1 item deleted from list', 'Ok' , { duration: 3000 });
         }
       },
       err => {
@@ -61,7 +66,16 @@ export class AdminComponent {
         }
       }
     );
-
-
   }
+
+  getProducts() {
+    this.http.get<Product[]>('http://localhost:8080/item/all',
+      {headers:new HttpHeaders({'Content-Type': 'application/json'})})
+      .subscribe(data => {this.products = data as Product[];});
+  }
+
+  ngOnInit() {
+    this.getProducts();
+  }
+
 }
