@@ -15,14 +15,18 @@ export class RegisterComponent {
   email: string | undefined;
   password: string | undefined;
 
+
+  API_BASE_URL = 'http://localhost:8080';
+
   constructor(private http: HttpClient) {
   }
-
+  requestHeader = new HttpHeaders({ "No-Auth":"True"});
   onSubmit() {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post('http://localhost:8080/customer/add',
+   // const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post('http://localhost:8080/api/v1/auth/registeruser',
       {name: this.name, email: this.email, password: this.password},
-      {headers, observe: 'response'}).subscribe(
+      {headers : this.requestHeader, observe: 'response'}
+      ).subscribe(
       res => {
         console.log(res);
         this.name = '';

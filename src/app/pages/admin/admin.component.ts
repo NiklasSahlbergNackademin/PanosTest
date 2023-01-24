@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Product} from "../../models/product.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -19,6 +20,7 @@ export class AdminComponent {
 
   constructor(private http: HttpClient) {
   }
+  requestHeader = new HttpHeaders({ "No-Auth":"True"});
 
   onSubmit() {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

@@ -5,14 +5,19 @@ import {CartComponent} from "./pages/cart/cart.component";
 import {ReceiptComponent} from "./components/header/receipt/receipt.component";
 import {AdminComponent} from "./pages/admin/admin.component";
 import {RegisterComponent} from "./pages/register/register.component";
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_auth/auth.guard';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'cart', component: CartComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'receipt', component: ReceiptComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'admin', component: AdminComponent, canActivate:[AuthGuard], data:{role:['ADMIN']}},
+  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
+  {path: 'forbidden', component: ForbiddenComponent}
 ];
 
 @NgModule({
