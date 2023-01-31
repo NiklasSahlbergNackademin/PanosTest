@@ -7,16 +7,26 @@
         <div class="w-full bg-blue-200"
             [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
             <div class="rounded-xl ">
-              <h5>{{ product.category + ' ' + '(id: ' + product.id + ')'}}</h5>
+              <h5 *ngIf="userService.roleMatch(['ADMIN'])">  {{ product.category + ' ' + '(id: ' + product.id + ')'}}</h5>
                 <p class="truncate hover:whitespace-normal">{{ product.name }}</p>
                 <p *ngIf="fullWidthMode"> {{ product.description }}</p>
             </div>
-            <div class="flex justify-between">
+            <div *ngIf="!userService.roleMatch(['ADMIN'])" class="flex justify-between">
                 <span class="text-red-600">{{ product.price | currency }} </span>
                 <button (click)="onAddToCart()">
                   <mat-icon class="text-gray-500">shopping_cart</mat-icon>
                 </button>
             </div>
+
+            <div *ngIf="userService.roleMatch(['ADMIN'])" class="flex justify-between">
+                <span class="text-red-600">{{ product.price | currency }} </span>
+                <button (click)="onDelete(product.id)">
+                  <mat-icon class="text-gray-500">delete</mat-icon>
+                </button>
+            </div>
+
+         
+            
         </div>
 
     </div>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from "../../models/product.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Product} from "../../models/product.model";
+
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
 
   constructor(private _snackBar: MatSnackBar,private http: HttpClient, private productService: ProductService) {
   }
+  requestHeader = new HttpHeaders({ "No-Auth":"True"});
 
   onSubmit() {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -35,6 +36,8 @@ export class AdminComponent implements OnInit {
         this.category = '';
         this.description = '';
         this.image = '';
+
+        alert("Successfully added");
         if (res.status) {
           console.log("Successfully Created");
           this._snackBar.open('1 item added to list', 'Ok' , { duration: 3000 });

@@ -1,11 +1,14 @@
+
 <mat-toolbar class="justify-between max-w-7xl mx-auto border-x rounded-xl bg-blue-200 mb-5">
+  <div>{{timestamp}}</div>
   <a routerLink="home"><mat-icon fontIcon="home"></mat-icon></a>
-  <a routerLink="home" class="font-medium leading-tight text-3xl mt-0 mb-2">KlädButiken</a>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
+
+  <a routerLink="home" class ="font-medium leading-tight text-3xl mt-0 mb-2">Store</a>
+  <button *ngIf="!userService.roleMatch(['ADMIN'])" mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon
       [matBadge]="itemsQuantity"
       [matBadgeHidden]="!itemsQuantity"
-      matBadgeColor="warn"
+      matBadgeColor="warn" 
       >shopping_cart</mat-icon
     >
   </button>
@@ -15,6 +18,8 @@
           <span class="mr-16">{{itemsQuantity}} Items</span>
           <a routerLink="cart">View Cart</a>
       </div>
+   
+      
 
       <div *ngIf="cart.items.length" class="py-3">
         <div *ngFor="let item of cart.items" class="flex justify-between font-light mb-2">
@@ -31,7 +36,7 @@
           class="bg-red-600 text-white rounded-full w-9 h-9">
           <mat-icon>remove_shopping_cart</mat-icon>
         </button>
-        <button
+        <button 
           routerLink="cart"
           class="bg-green-600 text-white rounded-full w-9 h-9">
           <mat-icon>shopping_cart</mat-icon>
@@ -41,7 +46,10 @@
   </mat-menu>
 </mat-toolbar>
 <mat-toolbar class="justify-between max-w-sm mx-auto border-x rounded-xl bg-blue-200 mb-5">
-  <a routerLink="home" class="p-3 rounded-xl hover:bg-blue-400 ">Log In</a>
-  <a routerLink="register" class="p-3 rounded-xl hover:bg-blue-400 ">Sign Up</a>
-  <a routerLink="admin" class="p-3 rounded-xl hover:bg-blue-400 ">Admin</a>
+  <a *ngIf ="! isLoggedIn()" routerLink="login" class="p-3 rounded-xl hover:bg-blue-400 ">Log In</a>
+  <a *ngIf ="isLoggedIn()" routerLink="home" class="p-3 rounded-xl hover:bg-blue-400 " (click)="logout()">Log Out</a>
+  <a *ngIf ="! isLoggedIn()" routerLink="register" class="p-3 rounded-xl hover:bg-blue-400 ">Sign Up</a>
+  <a *ngIf="userService.roleMatch(['ADMIN'])" routerLink="admin" class="p-3 rounded-xl hover:bg-blue-400 ">Admin</a>
+  
+  <a *ngIf ="isLoggedIn()"routerLink="profile">Profile</a>
 </mat-toolbar>

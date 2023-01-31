@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Product} from "../../models/product.model";
 import {ProductService} from "../../models/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
   public getProducts(): void {
+
     this.productService.getProducts()
       .subscribe((_products) => {
         this.products = _products;

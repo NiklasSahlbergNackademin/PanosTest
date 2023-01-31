@@ -59,8 +59,11 @@
           </button>
         </td>
         <td mat-footer-cell *matFooterCellDef>
-          <button mat-raised-button color="primary" class="float-right" routerLink="/receipt">
+          <button *ngIf="userService.roleMatch(['USER'])"  mat-raised-button color="primary" class="float-right" routerLink="/buyerinfo">
             Proceed To Checkout
+          </button>
+          <button *ngIf="!userService.roleMatch(['USER'])" mat-raised-button color="primary" class="float-right" routerLink="/login">
+            Login before checkout
           </button>
         </td>
       </ng-container>
