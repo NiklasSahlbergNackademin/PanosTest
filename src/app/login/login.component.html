@@ -1,28 +1,36 @@
 
-
-
-<div class="container mt-5">
-    <div class="card" style="padding: 20px;">
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-        <input type="text"
+<div class="input-right">
+<div class="container mt-5 ">
+    <div class="flex justify-center" style="display: flex;" >
+    <div class="card mx-auto" style="padding: 20px; margin: 0 auto;">
+    <form class="input-right" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+        <input type="text" 
         ngModel 
         name="email"
         id="email"
-        placeholder="Enter your email"
-        class="form-control mb-3">
+        placeholder="Enter your username"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+              focus:border-blue-500 block w-1/1 p-2.5 dark:bg-gray-700 px-40 dark:border-gray-600 dark:placeholder-gray-400
+              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
 
         <input type="password"
         ngModel 
         name="password"
         id="password"
         placeholder="Enter your password"
-        class="form-control mb-3">
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+              focus:border-blue-500 block w-3/3 p-2.5 dark:bg-gray-700 px-40 dark:border-gray-600 dark:placeholder-gray-400
+              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
 
-        <button  type="submit" id="Login"
+        <button class="mx-auto text-white w-1/3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+        focus:ring-blue-300 font-medium rounded-lg m-2 text-sm px-60 py-2.5 text-center
+        dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit" id="Login"
        >
   Login
   </button>
       
     </form>
     </div>
+    </div>
+</div>
 </div>

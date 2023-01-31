@@ -34,6 +34,8 @@ export class AdminComponent {
         this.category = '';
         this.description = '';
         this.image = '';
+
+        alert("Successfully added");
         if (res.status) {
           console.log("Successfully Created")
         }

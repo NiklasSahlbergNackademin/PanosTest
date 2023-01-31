@@ -24,7 +24,7 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
 import { CartComponent } from './pages/cart/cart.component';
 import {CartService} from "./services/cart.service";
-import { ReceiptComponent } from './components/header/receipt/receipt.component';
+import { ReceiptComponent } from './buyer-info/receipt/receipt.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RegisterComponent } from './pages/register/register.component';
@@ -34,6 +34,10 @@ import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
 import { UserService } from './services/user.service';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { BuyerInfoComponent } from './buyer-info/buyer-info.component';
+import { TimestampPipe } from './timestamp.pipe';
+import { TimestampService } from './timestamp.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,12 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     AdminComponent,
     RegisterComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    BuyerInfoComponent,
+    TimestampPipe,
+    ProfileComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -78,7 +87,9 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     useClass:AuthInterceptor,
     multi:true
   },
-UserService],
+UserService,
+TimestampPipe,
+TimestampService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

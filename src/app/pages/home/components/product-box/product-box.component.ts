@@ -26,7 +26,32 @@ export class ProductBoxComponent implements OnInit {
   onAddToCart(): void {
     this.addToCart.emit(this.product);
   }
+  
+  refresh(): void {
+    window.location.reload();
+}
+
+  onDelete(id: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.delete(`http://localhost:8080/item/delete/${id}`, {headers, observe: 'response'}).subscribe(
+      res => {
+        window.location.reload();
+        
+        if (res.status === 204) {
+          console.log("Successfully Deleted");
+          
+        }
+      },
+      err => {
+        if (err.status === 404) {
+          console.log("Not Found");
+        } else if (err.status === 400) {
+          console.log("Bad Request");
+        }
+      }
+    );
 
 
+  }
 
 }

@@ -18,6 +18,13 @@
                 </button>
             </div>
 
+            <div *ngIf="userService.roleMatch(['ADMIN'])" class="flex justify-between">
+                <span class="text-red-600">{{ product.price | currency }} </span>
+                <button (click)="onDelete(product.id)">
+                  <mat-icon class="text-gray-500">delete</mat-icon>
+                </button>
+            </div>
+
          
             
         </div>

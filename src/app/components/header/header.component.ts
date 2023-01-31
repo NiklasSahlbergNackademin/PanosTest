@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import {Cart, CartItem} from "../../models/cart.model";
 import {CartService} from "../../services/cart.service";
 import { Router } from '@angular/router';
+import { TimestampService } from 'src/app/timestamp.service';
 
 
 @Component({
@@ -27,11 +28,19 @@ export class HeaderComponent implements OnInit{
       .map((item) => item.quantity)
       .reduce((prev, current) => prev + current,  0);
   }
+  user: any;
+   timestamp: string | undefined;
   constructor(private cartService: CartService, private userAuthService: UserAuthService,
     public userService: UserService,
-    private router: Router) { }
+    private router: Router,
+    private timestampService: TimestampService) {  this.userService.currentUser.subscribe(user => {
+      this.user = user;
+    });}
 
   ngOnInit() : void {
+    this.timestampService.timestamp$.subscribe(timestamp => {
+      this.timestamp = timestamp;
+    });
 
   }
 

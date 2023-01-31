@@ -11,9 +11,10 @@ export class RegisterComponent {
   customers: Array<Customer> | undefined;
 
   id: number | undefined;
-  name: string | undefined;
+  firstname: string | undefined;
   email: string | undefined;
   password: string | undefined;
+  lastname: string| undefined;
 
 
   API_BASE_URL = 'http://localhost:8080';
@@ -24,14 +25,15 @@ export class RegisterComponent {
   onSubmit() {
    // const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post('http://localhost:8080/api/v1/auth/registeruser',
-      {name: this.name, email: this.email, password: this.password},
+      {firstname: this.firstname, email: this.email, password: this.password, lastname: this.lastname},
       {headers : this.requestHeader, observe: 'response'}
       ).subscribe(
       res => {
         console.log(res);
-        this.name = '';
+        this.firstname = '';
         this.email = '';
         this.password = '';
+        this.lastname = '';
         if (res.status) {
           console.log("Successfully Created User")
         }

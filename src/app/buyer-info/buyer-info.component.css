@@ -1,0 +1,9 @@
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .form-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
