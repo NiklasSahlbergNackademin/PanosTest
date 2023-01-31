@@ -34,7 +34,16 @@
         <tr *ngFor="let item of cart.items">
           <td class="text-sm py-2 px-4 text-gray-700 border-r-2">{{item.name}} x {{item.quantity}}</td>
           <td class="text-sm px-2 text-gray-700 border-r-2"> </td>
-          <td class="text-sm py-2 px-4 text-gray-700">{{item.price * item.quantity}}</td>
+          <td class="text-sm py-2 px-4 text-gray-700">{{item.price * item.quantity | currency}}</td>
+        </tr>
+        <tr>
+        <td class="text-sm py-2 px-4 text-gray-700 border-r-2"> </td>
+        <td class="text-sm px-2 text-gray-700 border-r-2"></td>
+        <td class="text-sm py-2 px-4 text-gray-700">
+          <div class="ml-[30rem] w-[150px] text-sm px-2 text-gray-700 border-2 rounded-xl">
+            TOTAL: {{ getTotal(cart.items) | currency }}
+          </div>
+        </td>
         </tr>
         </tbody>
       </table>

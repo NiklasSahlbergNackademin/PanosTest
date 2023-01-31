@@ -1,10 +1,8 @@
-
 <mat-toolbar class="justify-between max-w-7xl mx-auto border-x rounded-xl bg-blue-200 mb-5">
-  <div>{{timestamp}}</div>
   <a routerLink="home"><mat-icon fontIcon="home"></mat-icon></a>
 
   <a routerLink="home" class ="font-medium leading-tight text-3xl mt-0 mb-2">Store</a>
-  <button *ngIf="!userService.roleMatch(['ADMIN'])" mat-icon-button [matMenuTriggerFor]="menu">
+  <button [disabled]="userService.roleMatch(['ADMIN'])" mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon
       [matBadge]="itemsQuantity"
       [matBadgeHidden]="!itemsQuantity"

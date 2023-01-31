@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Cart} from "../../models/cart.model";
+import {Cart, CartItem} from "../../models/cart.model";
 import {CartService} from "../../services/cart.service";
 import { BuyerInfoComponent } from '../buyer-info.component';
 import { ActivatedRoute } from '@angular/router';
@@ -30,7 +30,7 @@ export class ReceiptComponent implements OnInit{
   set cart(cart: Cart) {
     this._cart = cart;
   }
-  
+
   constructor(private cartService: CartService,
     private route: ActivatedRoute
    ) { }
@@ -43,7 +43,7 @@ export class ReceiptComponent implements OnInit{
     this.postalCode = buyerInfo.postalCode;
   }
 
-  ngOnInit(){ 
+  ngOnInit(){
     this.cartService.cart.subscribe((_cart) => {
       this.cart = _cart;
 
@@ -52,31 +52,32 @@ export class ReceiptComponent implements OnInit{
         if (firstName) {
           this.firstName = firstName;
         }
-    
+
         let lastName = params.get('lastName');
         if (lastName) {
           this.lastName = lastName;
         }
-    
+
         let email = params.get('email');
         if (email) {
           this.email = email;
         }
-    
+
         let address = params.get('address');
         if (address) {
           this.address = address;
         }
-    
+
         let postalCode = params.get('postalCode');
         if (postalCode) {
           this.postalCode = postalCode;
         }
-      
       });
-
-      
     })
+  }
+
+  getTotal(items: Array<CartItem>): number {
+    return this.cartService.getTotal(items);
   }
 
 }
