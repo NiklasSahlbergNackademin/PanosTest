@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ProductService } from "../../models/product.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-
-import { Route, Router } from '@angular/router';
+import {Product} from "../../models/product.model";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
