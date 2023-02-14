@@ -38,6 +38,10 @@ import { BuyerInfoComponent } from './buyer-info/buyer-info.component';
 import { TimestampPipe } from './timestamp.pipe';
 import { TimestampService } from './timestamp.service';
 import { ProfileComponent } from './profile/profile.component';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
+import { AdditemComponent } from './additem/additem.component';
+
+
 
 @NgModule({
   declarations: [
@@ -56,6 +60,10 @@ import { ProfileComponent } from './profile/profile.component';
     BuyerInfoComponent,
     TimestampPipe,
     ProfileComponent,
+    OrderhistoryComponent,
+    AdditemComponent,
+
+    
     
     
   ],

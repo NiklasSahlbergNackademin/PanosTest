@@ -10,6 +10,10 @@ import { AuthGuard } from './_auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { BuyerInfoComponent } from './buyer-info/buyer-info.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
+import { AdditemComponent } from './additem/additem.component';
+
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -21,7 +25,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'buyerinfo', component: BuyerInfoComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'orderhistory', component: OrderhistoryComponent},
+  {path: 'additem', component: AdditemComponent}
+  
+  
 ];
 
 @NgModule({

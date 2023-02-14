@@ -4,13 +4,21 @@ import {CartService} from "../../services/cart.service";
 import { BuyerInfoComponent } from '../buyer-info.component';
 import { ActivatedRoute } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { Order } from 'src/app/order/order';
+import { OrderService } from 'src/app/order.service';
+
 
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.component.html',
   styleUrls: ['./receipt.component.css']
 })
+
+
 export class ReceiptComponent implements OnInit{
+
+  order!: Order;
+  
   firstName: string ="";
   lastName: string="";
   email: string="";
@@ -22,6 +30,9 @@ export class ReceiptComponent implements OnInit{
   private _cart: Cart = { items: [] };
   itemsQuantity = 0;
 
+  public newArray: CartItem[] = [];
+  newSum = 0;
+
   @Input()
   get cart(): Cart {
     return this._cart;
@@ -32,7 +43,8 @@ export class ReceiptComponent implements OnInit{
   }
 
   constructor(private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private orderService: OrderService
    ) { }
 
    receiveBuyerInfo(buyerInfo: { firstName: string, lastName: string, email: string, address: string, postalCode: string }) {
@@ -44,9 +56,17 @@ export class ReceiptComponent implements OnInit{
   }
 
   ngOnInit(){
+  
     this.cartService.cart.subscribe((_cart) => {
       this.cart = _cart;
-
+      if (this.newArray.length == 0)
+      {
+      this.newArray = [...this.cart.items];
+      }
+    
+      
+      
+      
       this.route.paramMap.subscribe(params => {
         let firstName = params.get('firstName');
         if (firstName) {
@@ -77,7 +97,19 @@ export class ReceiptComponent implements OnInit{
   }
 
   getTotal(items: Array<CartItem>): number {
-    return this.cartService.getTotal(items);
+
+    
+    if (this.cartService.getTotal(items) > 0)
+      {
+        this.newSum = this.cartService.getTotal(items);
+        return this.newSum;
+
+      }
+  return this.newSum;
+    
+
+
   }
 
+ 
 }
