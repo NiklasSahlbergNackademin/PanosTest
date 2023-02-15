@@ -62,9 +62,10 @@ export class ReceiptComponent implements OnInit{
       if (this.newArray.length == 0)
       {
       this.newArray = [...this.cart.items];
+      this.cartService.clearCart();
       }
     
-      
+     
       
       
       this.route.paramMap.subscribe(params => {

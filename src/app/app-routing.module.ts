@@ -26,8 +26,8 @@ const routes: Routes = [
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'buyerinfo', component: BuyerInfoComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'orderhistory', component: OrderhistoryComponent},
-  {path: 'additem', component: AdditemComponent}
+  {path: 'orderhistory', component: OrderhistoryComponent, canActivate:[AuthGuard], data:{role:['ADMIN']}},
+  {path: 'additem', component: AdditemComponent, canActivate:[AuthGuard], data:{role:['ADMIN']}}
   
   
 ];
